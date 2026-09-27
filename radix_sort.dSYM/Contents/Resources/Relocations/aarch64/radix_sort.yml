@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/alexandr/Desktop/Radix/radix_sort'
+relocations:     []
+...
