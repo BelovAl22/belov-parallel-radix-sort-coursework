@@ -1,5 +1,5 @@
 ---
 triple:          'arm64-apple-darwin'
-binary-path:     '/Users/alexandr/Desktop/Radix/radix_sort'
+binary-path:     '/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/NonParallel/radix_sort'
 relocations:     []
 ...

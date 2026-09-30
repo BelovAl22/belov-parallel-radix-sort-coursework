@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/Parallel/radix_sort'
+relocations:     []
+...
