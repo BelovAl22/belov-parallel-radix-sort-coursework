@@ -1,0 +1,10 @@
+/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/CMakeFiles/radix_core.dir
+/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/CMakeFiles/sort_app.dir
+/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/CMakeFiles/radix_tests.dir
+/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/CMakeFiles/test.dir
+/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/CMakeFiles/edit_cache.dir
+/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/CMakeFiles/rebuild_cache.dir
+/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/CMakeFiles/list_install_components.dir
+/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/CMakeFiles/install.dir
+/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/CMakeFiles/install/local.dir
+/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/CMakeFiles/install/strip.dir

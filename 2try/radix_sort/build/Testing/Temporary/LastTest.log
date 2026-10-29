@@ -1,0 +1,387 @@
+Start testing: Oct 12 10:14 +07
+----------------------------------------------------------
+1/8 Testing: unit_tests
+1/8 Test: unit_tests
+Command: "/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/radix_tests"
+Directory: /Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build
+"unit_tests" start time: Oct 12 10:14 +07
+Output:
+----------------------------------------------------------
+radix_tests: 21 test groups, OpenMP max threads = 8
+[ OK ] block_begin                        0.00 s
+[ OK ] memory_estimate_and_limits         0.00 s
+[ OK ] edge_sizes_and_patterns            0.83 s
+[ OK ] threads_used_and_n_less_than_t     0.00 s
+[ OK ] write_range_invariants             0.11 s
+[ OK ] workspace_and_buffer_reuse         0.07 s
+[ OK ] invalid_arguments                  0.00 s
+[ OK ] generator                          0.02 s
+[ OK ] io_roundtrip                       0.11 s
+[ OK ] text_parsing_formats               0.00 s
+[ OK ] chunk_boundary                     0.31 s
+[ OK ] verify_module                      0.00 s
+[ OK ] scatter_leaves_input_intact        0.07 s
+[ OK ] default_run_settings_and_counts    0.00 s
+[ OK ] experiment_memory_estimate         0.00 s
+[ OK ] run_experiment_fairness_and_memory 0.06 s
+[ OK ] query_memory                       0.01 s
+[ OK ] vm_stat_parser                     0.00 s
+[ OK ] estimate_key_count_and_reserve     0.23 s
+[ OK ] binary_read_piece_boundary         0.06 s
+[ OK ] sizes                              0.98 s
+checks: 8589, failures: 0
+<end of output>
+Test time =   5.74 sec
+----------------------------------------------------------
+Test Passed.
+"unit_tests" end time: Oct 12 10:14 +07
+"unit_tests" time elapsed: 00:00:05
+----------------------------------------------------------
+
+2/8 Testing: cli_benchmark_scatter
+2/8 Test: cli_benchmark_scatter
+Command: "/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/sort_app" "--mode" "benchmark" "--generate" "2M" "--threads" "4" "--repeats" "2" "--verify"
+Directory: /Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build
+"cli_benchmark_scatter" start time: Oct 12 10:14 +07
+Output:
+----------------------------------------------------------
+[    0.0 s] generating 2000000 keys (uniform, seed 12345)...
+[    0.0 s] generated in 0.001578 s
+[    0.0 s] verify: taking checksums and the exact histogram of the input
+[    0.1 s] allocating the output buffer (3.81 MiB)
+[    0.1 s] warm-up: serial sort (not timed)
+[    0.1 s] warm-up: parallel sort (not timed)
+[    0.1 s] run 1/2: serial sort of 2000000 keys...
+[    0.1 s] run 1/2: serial sort done in 0.006693 s
+[    0.1 s] run 1/2: parallel sort of 2000000 keys (4 threads requested)...
+[    0.1 s] run 1/2: parallel sort done in 0.001889 s
+[    0.1 s] run 2/2: serial sort of 2000000 keys...
+[    0.1 s] run 2/2: serial sort done in 0.006673 s
+[    0.1 s] verify: checking the serial result
+[    0.1 s] verify: serial result is correct (checked in 0.008257 s)
+[    0.1 s] run 2/2: parallel sort of 2000000 keys (4 threads requested)...
+[    0.1 s] run 2/2: parallel sort done in 0.001903 s
+[    0.1 s] verify: checking the parallel result
+[    0.1 s] verify: parallel result is correct (checked in 0.008045 s)
+[    0.1 s] done; the report follows
+Parallel Radix Sort (benchmark: serial vs parallel)
+===================================================
+
+Elements:      2000000
+Data type:     uint16_t
+Key range:     0..65535
+Algorithm:     scatter (stable counting sort, single 16-bit pass, output buffer)
+Input:         uniform, seed 12345 (generated)
+Generation:    0.001578 s (not included in sorting time)
+Threads:       4 requested, 4 used (hardware threads: 8)
+Repeats:       2 (+1 untimed warm-up)
+
+Correctness:
+  Sorted:      YES
+  Count check: YES
+  Checksum:    YES
+  Histogram:   YES (exact multiset equality)
+  std::sort:   YES (result compared with std::sort, N <= 10000000)
+
+Performance:
+  Serial:      0.006673 s (best of 2; mean 0.006683 s, sd 0.000014 s)
+  Parallel:    0.001889 s (best of 2; mean 0.001896 s, sd 0.000011 s)
+  Speedup:     3.53x (best / best), 3.52x (mean / mean)
+  Efficiency:  88.3% (speedup / 4 threads)
+
+Phase breakdown (fastest run, omp_get_wtime):
+  Serial:      count 0.001935 s | prefix 0.000045 s | scatter 0.004691 s
+  Parallel:    count 0.000531 s | merge+prefix 0.000070 s | scatter 0.001287 s
+
+Memory (parallel version):
+  Input:       3.81 MiB
+  Output:      3.81 MiB
+  Histogram:   1.00 MiB (4 x 65536 x 4 B)
+  Aux tables:  256.31 KiB
+  Total:       8.88 MiB
+  Restore:     no extra copy (the sort leaves its input intact; arrays are swapped)
+<end of output>
+Test time =   0.61 sec
+----------------------------------------------------------
+Test Passed.
+"cli_benchmark_scatter" end time: Oct 12 10:14 +07
+"cli_benchmark_scatter" time elapsed: 00:00:00
+----------------------------------------------------------
+
+3/8 Testing: cli_benchmark_fill
+3/8 Test: cli_benchmark_fill
+Command: "/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/sort_app" "--mode" "benchmark" "--generate" "2M" "--threads" "3" "--algorithm" "fill" "--repeats" "2" "--verify"
+Directory: /Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build
+"cli_benchmark_fill" start time: Oct 12 10:14 +07
+Output:
+----------------------------------------------------------
+[    0.0 s] generating 2000000 keys (uniform, seed 12345)...
+[    0.0 s] generated in 0.001004 s
+[    0.0 s] verify: taking checksums and the exact histogram of the input
+[    0.1 s] making a pristine copy of the input to restore it between runs (3.81 MiB)
+[    0.1 s] warm-up: serial sort (not timed)
+[    0.1 s] warm-up: parallel sort (not timed)
+[    0.1 s] run 1/2: serial sort of 2000000 keys...
+[    0.1 s] run 1/2: serial sort done in 0.003253 s
+[    0.1 s] run 1/2: parallel sort of 2000000 keys (3 threads requested)...
+[    0.1 s] run 1/2: parallel sort done in 0.001223 s
+[    0.1 s] run 2/2: serial sort of 2000000 keys...
+[    0.1 s] run 2/2: serial sort done in 0.003215 s
+[    0.1 s] verify: checking the serial result
+[    0.1 s] verify: serial result is correct (checked in 0.008339 s)
+[    0.1 s] run 2/2: parallel sort of 2000000 keys (3 threads requested)...
+[    0.1 s] run 2/2: parallel sort done in 0.001198 s
+[    0.1 s] verify: checking the parallel result
+[    0.1 s] verify: parallel result is correct (checked in 0.008052 s)
+[    0.1 s] done; the report follows
+Parallel Radix Sort (benchmark: serial vs parallel)
+===================================================
+
+Elements:      2000000
+Data type:     uint16_t
+Key range:     0..65535
+Algorithm:     fill (histogram + range fill, in place, no output buffer)
+Input:         uniform, seed 12345 (generated)
+Generation:    0.001004 s (not included in sorting time)
+Threads:       3 requested, 3 used (hardware threads: 8)
+Repeats:       2 (+1 untimed warm-up)
+
+Correctness:
+  Sorted:      YES
+  Count check: YES
+  Checksum:    YES
+  Histogram:   YES (exact multiset equality)
+  std::sort:   YES (result compared with std::sort, N <= 10000000)
+
+Performance:
+  Serial:      0.003215 s (best of 2; mean 0.003234 s, sd 0.000027 s)
+  Parallel:    0.001198 s (best of 2; mean 0.001210 s, sd 0.000017 s)
+  Speedup:     2.68x (best / best), 2.67x (mean / mean)
+  Efficiency:  89.4% (speedup / 3 threads)
+
+Phase breakdown (fastest run, omp_get_wtime):
+  Serial:      count 0.001920 s | prefix 0.000 s | fill 0.001288 s
+  Parallel:    count 0.000671 s | merge+prefix 0.000059 s | fill 0.000468 s
+
+Memory (parallel version):
+  Input:       3.81 MiB
+  Output:      none (in place)
+  Histogram:   768.00 KiB (3 x 65536 x 4 B)
+  Aux tables:  256.25 KiB
+  Total:       4.81 MiB
+  Restore copy:+3.81 MiB (pristine input to restore between runs)
+<end of output>
+Test time =   0.10 sec
+----------------------------------------------------------
+Test Passed.
+"cli_benchmark_fill" end time: Oct 12 10:14 +07
+"cli_benchmark_fill" time elapsed: 00:00:00
+----------------------------------------------------------
+
+4/8 Testing: cli_single_thread
+4/8 Test: cli_single_thread
+Command: "/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/sort_app" "--mode" "parallel" "--generate" "100k" "--threads" "1" "--distribution" "few-values" "--repeats" "1" "--verify"
+Directory: /Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build
+"cli_single_thread" start time: Oct 12 10:14 +07
+Output:
+----------------------------------------------------------
+[    0.0 s] generating 100000 keys (few-values, seed 12345)...
+[    0.0 s] generated in 0.000143 s
+[    0.0 s] verify: taking checksums and the exact histogram of the input
+[    0.0 s] allocating the output buffer (195.31 KiB)
+[    0.0 s] warm-up: parallel sort (not timed)
+[    0.0 s] run 1/1: parallel sort of 100000 keys (1 threads requested)...
+[    0.0 s] run 1/1: parallel sort done in 0.000272 s
+[    0.0 s] verify: checking the parallel result
+[    0.0 s] verify: parallel result is correct (checked in 0.000472 s)
+[    0.0 s] done; the report follows
+Parallel Radix Sort
+===================
+
+Elements:      100000
+Data type:     uint16_t
+Key range:     0..65535
+Algorithm:     scatter (stable counting sort, single 16-bit pass, output buffer)
+Input:         few-values, seed 12345 (generated)
+Generation:    0.000143 s (not included in sorting time)
+Threads:       1 requested, 1 used (hardware threads: 8)
+Repeats:       1 (+1 untimed warm-up)
+
+Correctness:
+  Sorted:      YES
+  Count check: YES
+  Checksum:    YES
+  Histogram:   YES (exact multiset equality)
+  std::sort:   YES (result compared with std::sort, N <= 10000000)
+
+Performance:
+  Parallel:    0.000272 s (single run)
+
+Phase breakdown (fastest run, omp_get_wtime):
+  Parallel:    count 0.000087 s | merge+prefix 0.000072 s | scatter 0.000113 s
+
+Memory (parallel version):
+  Input:       195.31 KiB
+  Output:      195.31 KiB
+  Histogram:   256.00 KiB (1 x 65536 x 4 B)
+  Aux tables:  256.12 KiB
+  Total:       902.75 KiB
+  Restore:     no extra copy (the sort leaves its input intact; arrays are swapped)
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"cli_single_thread" end time: Oct 12 10:14 +07
+"cli_single_thread" time elapsed: 00:00:00
+----------------------------------------------------------
+
+5/8 Testing: cli_empty_array
+5/8 Test: cli_empty_array
+Command: "/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/sort_app" "--mode" "benchmark" "--generate" "0" "--threads" "4" "--verify"
+Directory: /Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build
+"cli_empty_array" start time: Oct 12 10:14 +07
+Output:
+----------------------------------------------------------
+[    0.0 s] generating 0 keys (uniform, seed 12345)...
+[    0.0 s] generated in 0.000000 s
+[    0.0 s] verify: taking checksums and the exact histogram of the input
+[    0.0 s] warm-up: serial sort (not timed)
+[    0.0 s] warm-up: parallel sort (not timed)
+[    0.0 s] run 1/3: serial sort of 0 keys...
+[    0.0 s] run 1/3: serial sort done in 0.000000 s
+[    0.0 s] run 1/3: parallel sort of 0 keys (4 threads requested)...
+[    0.0 s] run 1/3: parallel sort done in 0.000000 s
+[    0.0 s] run 2/3: serial sort of 0 keys...
+[    0.0 s] run 2/3: serial sort done in 0.000000 s
+[    0.0 s] run 2/3: parallel sort of 0 keys (4 threads requested)...
+[    0.0 s] run 2/3: parallel sort done in 0.000000 s
+[    0.0 s] run 3/3: serial sort of 0 keys...
+[    0.0 s] run 3/3: serial sort done in 0.000000 s
+[    0.0 s] verify: checking the serial result
+[    0.0 s] verify: serial result is correct (checked in 0.000077 s)
+[    0.0 s] run 3/3: parallel sort of 0 keys (4 threads requested)...
+[    0.0 s] run 3/3: parallel sort done in 0.000000 s
+[    0.0 s] verify: checking the parallel result
+[    0.0 s] verify: parallel result is correct (checked in 0.000032 s)
+[    0.0 s] done; the report follows
+Parallel Radix Sort (benchmark: serial vs parallel)
+===================================================
+
+Elements:      0
+Data type:     uint16_t
+Key range:     0..65535
+Algorithm:     scatter (stable counting sort, single 16-bit pass, output buffer)
+Input:         uniform, seed 12345 (generated)
+Generation:    0.000000 s (not included in sorting time)
+Threads:       4 requested, 1 used (hardware threads: 8)
+Repeats:       3 (+1 untimed warm-up)
+
+Correctness:
+  Sorted:      YES
+  Count check: YES
+  Checksum:    YES
+  Histogram:   YES (exact multiset equality)
+  std::sort:   YES (result compared with std::sort, N <= 10000000)
+
+Performance:
+  Note:        empty array, nothing to measure
+  Serial:      0.000000 s (best of 3; mean 0.000000 s, sd 0.000 s)
+  Parallel:    0.000000 s (best of 3; mean 0.000000 s, sd 0.000000 s)
+  Speedup:     n/a (time is too small to measure)
+  Efficiency:  n/a
+
+Memory (parallel version):
+  Input:       0 B
+  Output:      none (in place)
+  Histogram:   256.00 KiB (1 x 65536 x 4 B)
+  Aux tables:  256.12 KiB
+  Total:       512.12 KiB
+  Restore:     no extra copy (the sort leaves its input intact; arrays are swapped)
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"cli_empty_array" end time: Oct 12 10:14 +07
+"cli_empty_array" time elapsed: 00:00:00
+----------------------------------------------------------
+
+6/8 Testing: cli_rejects_bad_arguments
+6/8 Test: cli_rejects_bad_arguments
+Command: "/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/sort_app" "--threads" "0"
+Directory: /Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build
+"cli_rejects_bad_arguments" start time: Oct 12 10:14 +07
+Output:
+----------------------------------------------------------
+error: --threads must be in [1, 1024]
+Try 'sort_app --help' for usage.
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"cli_rejects_bad_arguments" end time: Oct 12 10:14 +07
+"cli_rejects_bad_arguments" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/8 Testing: cli_quiet_mode
+7/8 Test: cli_quiet_mode
+Command: "/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/sort_app" "--mode" "serial" "--generate" "1M" "--quiet" "--verify" "--repeats" "1"
+Directory: /Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build
+"cli_quiet_mode" start time: Oct 12 10:14 +07
+Output:
+----------------------------------------------------------
+Serial Radix Sort
+=================
+
+Elements:      1000000
+Data type:     uint16_t
+Key range:     0..65535
+Algorithm:     scatter (stable counting sort, single 16-bit pass, output buffer)
+Input:         uniform, seed 12345 (generated)
+Generation:    0.000572 s (not included in sorting time)
+Threads:       1 (serial mode)
+Repeats:       1 (+1 untimed warm-up)
+
+Correctness:
+  Sorted:      YES
+  Count check: YES
+  Checksum:    YES
+  Histogram:   YES (exact multiset equality)
+  std::sort:   YES (result compared with std::sort, N <= 10000000)
+
+Performance:
+  Serial:      0.003347 s (single run)
+
+Phase breakdown (fastest run, omp_get_wtime):
+  Serial:      count 0.000971 s | prefix 0.000045 s | scatter 0.002329 s
+
+Memory (serial version):
+  Input:       1.91 MiB
+  Output:      1.91 MiB
+  Histogram:   256.00 KiB (65537 x 4 B)
+  Total:       4.06 MiB
+  Restore:     no extra copy (the sort leaves its input intact; arrays are swapped)
+<end of output>
+Test time =   0.05 sec
+----------------------------------------------------------
+Test Passed.
+"cli_quiet_mode" end time: Oct 12 10:14 +07
+"cli_quiet_mode" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/8 Testing: cli_rejects_oversized_n
+8/8 Test: cli_rejects_oversized_n
+Command: "/Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build/sort_app" "--mode" "serial" "--generate" "5G"
+Directory: /Users/alexandr/Documents/GitHub/belov-parallel-radix-sort-coursework/2try/radix_sort/build
+"cli_rejects_oversized_n" start time: Oct 12 10:14 +07
+Output:
+----------------------------------------------------------
+error: N = 5000000000 exceeds the limit of this build (4294967295 keys, 32-bit counters); rebuild with -DRADIX_WIDE_COUNTERS=ON
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"cli_rejects_oversized_n" end time: Oct 12 10:14 +07
+"cli_rejects_oversized_n" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Oct 12 10:14 +07

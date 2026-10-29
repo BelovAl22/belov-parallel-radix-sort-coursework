@@ -1,0 +1,9 @@
+unit_tests 1 5.73798
+cli_benchmark_scatter 1 0.60995
+cli_benchmark_fill 1 0.0972687
+cli_single_thread 1 0.012488
+cli_empty_array 1 0.00967746
+cli_rejects_bad_arguments 1 0.00332567
+cli_quiet_mode 1 0.0519504
+cli_rejects_oversized_n 1 0.00435608
+---

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libradix_core.a CMakeFiles/radix_core.dir/src/radix_sort.cpp.o CMakeFiles/radix_core.dir/src/io.cpp.o CMakeFiles/radix_core.dir/src/data_gen.cpp.o CMakeFiles/radix_core.dir/src/verify.cpp.o CMakeFiles/radix_core.dir/src/sysinfo.cpp.o CMakeFiles/radix_core.dir/src/benchmark.cpp.o
+/usr/bin/ranlib libradix_core.a
